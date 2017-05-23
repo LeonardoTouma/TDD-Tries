@@ -11,7 +11,7 @@ namespace TDD_TESTS
     public class Tests
     {
             [Test]
-            public void CheckInfo(string info)
+            public void CheckInfo()
             {
                 var infos = new InfoNeeded();
                 string hej = "tjena";

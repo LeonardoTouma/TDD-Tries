@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationEngine", "VAlidat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationEngineTests", "ValidationEngineTests\ValidationEngineTests.csproj", "{7FBCAA01-CC4F-4D85-B30B-DD0BA4B82038}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ex2", "Ex2", "{B4294ADC-A92F-468D-822E-6AECA3C27744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency", "TravelAgency\TravelAgency.csproj", "{5F19E929-8FFC-489D-857B-A23E764F9E2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgencyTests", "TravelAgencyTests\TravelAgencyTests.csproj", "{780E1714-0C48-4C78-A916-CC1AFCA7B375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +41,14 @@ Global
 		{7FBCAA01-CC4F-4D85-B30B-DD0BA4B82038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FBCAA01-CC4F-4D85-B30B-DD0BA4B82038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FBCAA01-CC4F-4D85-B30B-DD0BA4B82038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F19E929-8FFC-489D-857B-A23E764F9E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F19E929-8FFC-489D-857B-A23E764F9E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F19E929-8FFC-489D-857B-A23E764F9E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F19E929-8FFC-489D-857B-A23E764F9E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780E1714-0C48-4C78-A916-CC1AFCA7B375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780E1714-0C48-4C78-A916-CC1AFCA7B375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780E1714-0C48-4C78-A916-CC1AFCA7B375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780E1714-0C48-4C78-A916-CC1AFCA7B375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +56,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{50283709-C9F7-4A5E-BB27-D3853CBF0EC5} = {9E865869-AC36-45BF-AAD4-08405D5D6C5A}
 		{7FBCAA01-CC4F-4D85-B30B-DD0BA4B82038} = {9E865869-AC36-45BF-AAD4-08405D5D6C5A}
+		{5F19E929-8FFC-489D-857B-A23E764F9E2D} = {B4294ADC-A92F-468D-822E-6AECA3C27744}
+		{780E1714-0C48-4C78-A916-CC1AFCA7B375} = {B4294ADC-A92F-468D-822E-6AECA3C27744}
 	EndGlobalSection
 EndGlobal

@@ -11,12 +11,14 @@ namespace TravelAgencyTests
     [TestFixture]
     public class TourScheduleTests
     {
+        TourSchedule tour = new TourSchedule();
         private List<TourSchedule> tours = new List<TourSchedule>();
+        //public List<int?> NumberOfTours { get; set; }
+        TravelAgency.Program prog = new Program();
         //[TestCase("GrandTour","2017/05/24", "Ford1", "Seat1")]
         [Test,TestCaseSource(typeof(TourSchedule))]
         public void CanCreateNewTour(string Name, DateTime Date, CheckVehicle Vehicle, CheckAvalibleSeats Seats)
         {
-            TourSchedule tour = new TourSchedule();
             tour.Name = Name;
             tour.Seats = Seats;
             tour.Vehicle = Vehicle;
@@ -24,10 +26,27 @@ namespace TravelAgencyTests
             tours.Add(tour);
             Assert.IsTrue(tour.CanCreateTour);
         }
+        [Test]
+        public void CheckIfPossibleToCanCreateNewTour()
+        {
+            var ListOfThrowntours = prog.CheckIfCreateTourIsPossible(tours);
+            Assert.AreEqual(ListOfThrowntours, tours);
+        }
         public TourSchedule ReturnTourInstance()
         {
             var sut = new TourSchedule();
             return sut;
+        }
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(4)]
+        [TestCase(15)]
+        [TestCase(0)]
+        public void CheckNumberOfToursAdded(int value)
+        {
+            tour.NumberOfToursAdded = value;
+            prog.NumberOftoursAdded(value);
+            Assert.IsNotNull(tour.NumberOfToursAdded);
         }
     }
 }

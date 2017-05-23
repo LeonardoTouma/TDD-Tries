@@ -13,6 +13,7 @@ namespace TravelAgency
         public CheckAvalibleSeats Seats { get; set; }
         public CheckVehicle Vehicle { get; set; }
         public bool CanCreateTour { get; set; }
+        public int? NumberOfToursAdded { get; set; }
         public TourSchedule()
         {
             Date = DateTime.Today.AddDays(+1);
@@ -32,7 +33,5 @@ namespace TravelAgency
         Seat2,
         Seat3,
         Seat4,
-        Seat5,
-        Seat6,
     }
 }

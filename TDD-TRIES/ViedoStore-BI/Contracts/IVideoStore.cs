@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViedoStore_BI
 {
-    public interface IVideoStore
+    public interface IVideoStore:IRentals
     {
             void RegisterCustomer(string name, string socialSecurityNumber);
             void AddMovie(Movie movie);

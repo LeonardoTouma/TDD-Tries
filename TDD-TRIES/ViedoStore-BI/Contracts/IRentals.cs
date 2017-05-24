@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViedoStore_BI
 {
-    interface IRentals
+    public interface IRentals
     {
         void AddRental(string movieTitle, string socialSecurityNumber);
         void RemoveRental(string movieTitle, string socialSecurityNumber);

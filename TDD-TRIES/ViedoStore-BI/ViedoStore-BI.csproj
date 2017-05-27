@@ -45,6 +45,7 @@
     <Compile Include="Contracts\IVideoStore.cs" />
     <Compile Include="Entity\Movie.cs" />
     <Compile Include="Entity\Rental.cs" />
+    <Compile Include="Logic\VideoStore.cs" />
     <Compile Include="Logic\WhatNeedsToBeDone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

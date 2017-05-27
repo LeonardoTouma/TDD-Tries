@@ -72,6 +72,7 @@ namespace ViedoStore_TESTS
             == customers.Where(e => e.SSN == socialSecurityNumber));
             rentals.Remove(ItemToRemove.First());
             rentals.Remove(ItemToRemoveBasedOFSSN.First());
+            //------------------TEST-----------------
             Assert.IsNotNull(ItemToRemove);
             Assert.IsNotNull(ItemToRemoveBasedOFSSN);
         }
@@ -86,6 +87,7 @@ namespace ViedoStore_TESTS
                   IsRented = true,
             };
             rentals.Add(rent);
+            //------------------TEST-----------------
             Assert.IsNotNull(rent);
             Assert.IsTrue(rent.IsRented);
         }

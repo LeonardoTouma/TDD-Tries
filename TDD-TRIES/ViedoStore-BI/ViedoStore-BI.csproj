@@ -49,11 +49,5 @@
     <Compile Include="Logic\WhatNeedsToBeDone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ViedoStore-UI\ViedoStore-UI.csproj">
-      <Project>{96c2c50a-d8a9-4335-90c2-14212f0d892b}</Project>
-      <Name>ViedoStore-UI</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

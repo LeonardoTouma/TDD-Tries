@@ -93,7 +93,7 @@ namespace ViedoStore_BI.Logic
                 IsRegisterd = true
             };
             //var checkifvaluesarethesame = Rentals.FirstOrDefault(X => X.Movies.Where(z => z.movieTitle != name) == Movies.Where(c => c.movieTitle != name));
-            var checkifssnsarethesame = Rentals.FirstOrDefault(X => X.Customers.Where(z => z.SSN != socialSecurityNumber) == Customers.Where(c => c.SSN != socialSecurityNumber));
+            //var checkifssnsarethesame = Rentals.FirstOrDefault(X => X.Customers.Where(z => z.SSN != socialSecurityNumber) == Customers.Where(c => c.SSN != socialSecurityNumber));
 
             //if (checkifssnsarethesame.Customers.FirstOrDefault(X => X.Name == name) == Customers.FirstOrDefault(c => c.Name == name))
             //{

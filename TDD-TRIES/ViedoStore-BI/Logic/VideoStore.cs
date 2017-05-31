@@ -132,13 +132,39 @@ namespace ViedoStore_BI.Logic
 
         public void RentMovie(string movieTitle, string socialSecurityNumber)
         {
+            foreach(var item in Rentals)
+                {
+                foreach (var item1 in item.Movies)
+                    {
+                    foreach (var item2 in item.Customers)
+                     {
+                       if (item1.movieTitle != movieTitle)
+                        {
+                            if (item2.SSN != socialSecurityNumber)
+                                {
+                                
+                                }
+                        
+                       
+                        
+                        }
+                    else
+                        {
+                        throw new InvalidOperationException();
+                        }
+                        }
+                    }
+                }
+            var MovieToAdd = Rentals.Where(X => X.Movies.Where(C => C.movieTitle
+            == movieTitle).FirstOrDefault() ==
+            Movies.Where(v => v.movieTitle == movieTitle).FirstOrDefault());
 
-            var MovieToAdd = Rentals.Where(X => X.Movies.Where(C => C.movieTitle != movieTitle).FirstOrDefault() ==
-            Movies.Where(v => v.movieTitle != movieTitle).FirstOrDefault());
+            var MovieToAddBasedOfSSN = Rentals.Where(X => X.Customers.Where(c => c.SSN == socialSecurityNumber)
+            == Customers.Where(v => v.SSN == socialSecurityNumber).FirstOrDefault());
+            
 
-            var MovieToAddBasedOfSSN = Rentals.Where(X => X.Customers.Where(c => c.SSN == socialSecurityNumber) == Customers.Where(v => v.SSN == socialSecurityNumber).FirstOrDefault());
-            Rentals.Add(MovieToAddBasedOfSSN.FirstOrDefault());
-            Rentals.Add(MovieToAdd.FirstOrDefault());
+            Rentals.Add(MovieToAddBasedOfSSN);
+            
         }
 
         public void ReturnMovie(string movieTitle, string socialSecurityNumber)

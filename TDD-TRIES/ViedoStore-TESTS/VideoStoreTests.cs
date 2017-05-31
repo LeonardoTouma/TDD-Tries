@@ -26,7 +26,7 @@ namespace ViedoStore_TESTS
             Assert.AreEqual(movie, movie2);
 
         }
-        [TestCase("Titanic",  "123")]
+        [TestCase("Titanic", "123")]
         public void AddRental(string movieTitle, string socialSecurityNumber)
         {
             Rental rent = new Rental()
@@ -91,8 +91,8 @@ namespace ViedoStore_TESTS
             {
                 Customers = customers.Where(x => x.SSN == socialSecurityNumber).ToList(),
                 Movies = movies.Where(x => x.movieTitle == movieTitle).ToList(),
-                 DateWhenRented = DateTime.Now,
-                  IsRented = true,
+                DateWhenRented = DateTime.Now,
+                IsRented = true,
             };
             rentals.Add(rent);
             //------------------TEST-----------------
@@ -102,22 +102,45 @@ namespace ViedoStore_TESTS
         [TestCase("Tilasa", "9887")]
         public void ReturnMovie(string movieTitle, string socialSecurityNumber)
         {
-            var ItemToRent = rentals.FirstOrDefault(x => x.Movies.Where(z => z.movieTitle == movieTitle)
-            == movies.FirstOrDefault(p => p.movieTitle == movieTitle));
-            var ItemToRentBasedOFSSN = rentals.Where(q => q.Customers.Where(w => w.SSN == socialSecurityNumber)
-            == customers.FirstOrDefault(e => e.SSN == socialSecurityNumber)).FirstOrDefault();
+            foreach (var item in rentals)
+            {
+                foreach (var item1 in item.Movies)
+                {
+                    foreach (var item2 in item.Customers)
+                    {
+                        if (item1.movieTitle == movieTitle)
+                        {
+                            if (item2.SSN == socialSecurityNumber)
+                            {
+                                var ItemToReMove = rentals.Where
+                                (X => X.Movies.FirstOrDefault(p => p.movieTitle == item1.movieTitle)
+                                == movies.FirstOrDefault(c => c.movieTitle == movieTitle));
+                                var ItemToRentBasedOFSSN = rentals.Where
+                                (q => q.Customers.FirstOrDefault(w => w.SSN == socialSecurityNumber)
+                                == customers.Where(e => e.SSN == item2.SSN))
+                                .FirstOrDefault();
+                                rentals.Remove(ItemToReMove.FirstOrDefault());
+                                rentals.Remove(ItemToRentBasedOFSSN);
+                                //------------------
+                                Assert.IsNotNull(ItemToReMove);
+                                Assert.IsNotNull(ItemToRentBasedOFSSN);
+                            }
+                        }
+                    }
+                }
+            }
 
-            ItemToRent.IsRented = ItemToRentBasedOFSSN.IsRented;
-            ItemToRent.LateReturns = ItemToRentBasedOFSSN.LateReturns;
-            ItemToRent.ID = ItemToRentBasedOFSSN.ID;
-            ItemToRent.Name = ItemToRentBasedOFSSN.Name;
-            ItemToRent.AmountOfMoviesRented = ItemToRentBasedOFSSN.AmountOfMoviesRented;
-              
-            rentals.Remove(ItemToRent);
-            rentals.Remove(ItemToRentBasedOFSSN);
+            //var ItemToRent = rentals.Where(x => x.Movies.Where(z => z.movieTitle == movieTitle)
+            //== movies.Where(p => p.movieTitle == movieTitle)).FirstOrDefault();
+            //var ItemToRentBasedOFSSN = rentals.Where(q => q.Customers.Where(w => w.SSN == socialSecurityNumber)
+            //== customers.Where(e => e.SSN == socialSecurityNumber)).FirstOrDefault();
+
+
+
+            //rentals.Remove(ItemToRent);
+            //rentals.Remove(ItemToRentBasedOFSSN);
             //----------------TEST--------------
-            Assert.IsNotNull(ItemToRent);
-            Assert.IsNotNull(ItemToRentBasedOFSSN);
+            
         }
 
     }

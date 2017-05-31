@@ -132,33 +132,37 @@ namespace ViedoStore_BI.Logic
 
         public void RentMovie(string movieTitle, string socialSecurityNumber)
         {
-            foreach (var item in Rentals)
+            if (Movies.Count() > 0 && Rentals.Count() > 0 && Customers.Count() > 0)
             {
-                foreach (var item1 in item.Movies)
+                foreach (var item in Rentals.ToList())
                 {
-                    foreach (var item2 in item.Customers)
+                    foreach (var item1 in item.Movies.ToList())
                     {
-                        if (item1.movieTitle != movieTitle)
+                        foreach (var item2 in item.Customers.ToList())
                         {
-                            if (item2.SSN != socialSecurityNumber)
+                            if (item1.movieTitle != movieTitle)
                             {
-                                var rent = new Rental()
+                                if (item2.SSN != socialSecurityNumber)
                                 {
-                                    IsRented = true,
-                                    Name = "rental5",
-                                    Movies = Movies.Where(X=>X.movieTitle == item1.movieTitle).ToList(),
-                                    Customers = Customers.Where(X => X.SSN == item2.SSN).ToList()
-                                };
-                                Rentals.Add(rent);
+                                    var rent = new Rental()
+                                    {
+                                        IsRented = true,
+                                        Name = "rental5",
+                                        Movies = Movies.Where(X => X.movieTitle == item1.movieTitle).ToList(),
+                                        Customers = Customers.Where(X => X.SSN == item2.SSN).ToList()
+                                    };
+                                    Rentals.Add(rent);
+                                }
                             }
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
+                            else
+                            {
+                                throw new InvalidOperationException();
+                            }
                         }
                     }
                 }
             }
+
         }
         public void ReturnMovie(string movieTitle, string socialSecurityNumber)
         {

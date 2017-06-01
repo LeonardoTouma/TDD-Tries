@@ -11,7 +11,7 @@ namespace ViedoStore_BI
             void RegisterCustomer(string name, string socialSecurityNumber);
             void AddMovie(Movie movie);
             void RentMovie(string movieTitle, string socialSecurityNumber);
-            List<Customer> GetCustomers();
+            List<Customer> GetCustomers_Thrue_List();
             void ReturnMovie(string movieTitle, string socialSecurityNumber);
     }
 }

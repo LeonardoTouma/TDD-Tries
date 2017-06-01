@@ -48,7 +48,7 @@ namespace ViedoStore_BI.Logic
         {
             var mov = new Movie()
             {
-                IsRented = true,
+                IsRented = movie.IsRented,
                 movieTitle = movie.movieTitle,
                 ID = movie.ID,
                 DateWhenAdded = movie.DateWhenAdded
@@ -58,10 +58,16 @@ namespace ViedoStore_BI.Logic
 
         public void AddRental(string movieTitle, string socialSecurityNumber)
         {
-            throw new NotImplementedException();
+            Rental rent = new Rental()
+            {
+                IsRented = true,
+                Movies = Movies.Where(X => X.movieTitle == movieTitle).ToList(),
+                Customers = Customers.Where(X => X.SSN == socialSecurityNumber).ToList()
+            };
+            Rentals.Add(rent);
         }
 
-        public List<Customer> GetCustomers()
+        public List<Customer> GetCustomers_Thrue_List()
         {
             return Customers;
         }
@@ -76,6 +82,7 @@ namespace ViedoStore_BI.Logic
                     {
                         return Rentals.Where(X => X.Customers.First(z => z.SSN == socialSecurityNumber) ==
                         Customers.Where(y => y.SSN == socialSecurityNumber)).ToList();
+
                     }
                     return Rentals;
                 }
@@ -92,24 +99,7 @@ namespace ViedoStore_BI.Logic
                 DateWhenJoin = DateTime.Now,
                 IsRegisterd = true
             };
-            //var checkifvaluesarethesame = Rentals.FirstOrDefault(X => X.Movies.Where(z => z.movieTitle != name) == Movies.Where(c => c.movieTitle != name));
-            //var checkifssnsarethesame = Rentals.FirstOrDefault(X => X.Customers.Where(z => z.SSN != socialSecurityNumber) == Customers.Where(c => c.SSN != socialSecurityNumber));
-
-            //if (checkifssnsarethesame.Customers.FirstOrDefault(X => X.Name == name) == Customers.FirstOrDefault(c => c.Name == name))
-            //{
-            //if (checkifssnsarethesame.Customers.FirstOrDefault(X => X.SSN == socialSecurityNumber) == Customers.Where(c => c.SSN != socialSecurityNumber))
-            //{
             Customers.Add(cust);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Your social security number might be wrong, double check if errors accured");
-            //}
-            //}
-            //else
-            //{
-            //    Console.WriteLine("The name you are trying to add already exists.");
-            //}
         }
 
         public List<Movie> GetMovies()
@@ -146,10 +136,10 @@ namespace ViedoStore_BI.Logic
                                 {
                                     var rent = new Rental()
                                     {
+                                        Customers = Customers.Where(x => x.SSN == socialSecurityNumber).ToList(),
+                                        Movies = Movies.Where(x => x.movieTitle == movieTitle).ToList(),
+                                        DateWhenRented = DateTime.Now,
                                         IsRented = true,
-                                        Name = "rental5",
-                                        Movies = Movies.Where(X => X.movieTitle == item1.movieTitle).ToList(),
-                                        Customers = Customers.Where(X => X.SSN == item2.SSN).ToList()
                                     };
                                     Rentals.Add(rent);
                                 }
@@ -166,23 +156,32 @@ namespace ViedoStore_BI.Logic
         }
         public void ReturnMovie(string movieTitle, string socialSecurityNumber)
         {
-            var ItemToRemove = Rentals.Where(x => x.Movies.Where(z => z.movieTitle == movieTitle)
-            == Movies.Where(p => p.movieTitle == movieTitle).ToList());
-            var ItemToRemoveBasedOFSSN = Rentals.Where(q => q.Customers.Where(w => w.SSN == socialSecurityNumber)
-            == Customers.Where(e => e.SSN == socialSecurityNumber));
-            foreach (var item in ItemToRemove)
+
+            foreach (var item in Rentals)
             {
-                foreach (var item1 in ItemToRemoveBasedOFSSN)
+                foreach (var item1 in item.Movies)
                 {
-                    item.IsRented = item1.IsRented;
-                    item.LateReturns = item1.LateReturns;
-                    item.ID = item1.ID;
-                    item.Name = item1.Name;
-                    item.AmountOfMoviesRented = item1.AmountOfMoviesRented;
+                    foreach (var item2 in item.Customers)
+                    {
+                        if (item1.movieTitle == movieTitle)
+                        {
+                            if (item2.SSN == socialSecurityNumber)
+                            {
+                                var ItemToReMove = Rentals.Where
+                                (X => X.Movies.FirstOrDefault(p => p.movieTitle == item1.movieTitle)
+                                == Movies.FirstOrDefault(c => c.movieTitle == movieTitle));
+                                var ItemToRentBasedOFSSN = Rentals.Where
+                                (q => q.Customers.FirstOrDefault(w => w.SSN == socialSecurityNumber)
+                                == Customers.Where(e => e.SSN == item2.SSN))
+                                .FirstOrDefault();
+                                Rentals.Remove(ItemToReMove.FirstOrDefault());
+                                Rentals.Remove(ItemToRentBasedOFSSN);
+                            }
+                        }
+                    }
                 }
             }
-            Rentals.Remove(ItemToRemove.First());
-            Rentals.Remove(ItemToRemoveBasedOFSSN.First());
+
         }
     }
 }

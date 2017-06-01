@@ -70,7 +70,7 @@ namespace ViedoStore_UI
             string SOC = Console.ReadLine();
             vid.RegisterCustomer(name, SOC);
             Console.WriteLine("You are now registerd, this is the rest of the customers:");
-            foreach (var item in vid.GetCustomers())
+            foreach (var item in vid.GetCustomers_Thrue_List())
             {
                 Console.WriteLine($"Name: {item.Name}, SSN: {item.SSN}");
             }

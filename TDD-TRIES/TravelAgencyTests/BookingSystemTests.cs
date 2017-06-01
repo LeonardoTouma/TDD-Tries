@@ -86,9 +86,7 @@ namespace TravelAgency
         [TestCaseSource(typeof(Passanger))]
         public List<Booking> GetBookingsFor(Passanger passanger, Booking booking/*TourSchedule tour*/)
         {
-            //var booking1 = new Booking();
             Assert.Contains(booking, bookings);
-            //Assert.ReferenceEquals(booking, tour);
             Assert.ReferenceEquals(booking, passanger);
             return bookings;
         }
@@ -96,7 +94,6 @@ namespace TravelAgency
         [TestCaseSource(typeof(TourSchedule))]
         public void Check_If_Able_To_Book_On_Non_Existing_Tour(Booking booking, TourSchedule tour)
         {
-            //var tour = new List<TourSchedule>() { new TourSchedule { CanCreateTour = true, Date = DateTime.Now, Name = "tour3", Seats = CheckAvalibleSeats.Seat1, Vehicle = CheckVehicle.Ford2 } };
             var book = new Booking() { Tours = new List<TourSchedule>() { new TourSchedule(itour) { CanCreateTour = true, Date = DateTime.Now, Name = "tour3", Seats = CheckAvalibleSeats.Seat4, Vehicle = CheckVehicle.Ford3 } } };
             var tour1 = new TourSchedule(itour)
             {

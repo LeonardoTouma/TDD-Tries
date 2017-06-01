@@ -54,7 +54,7 @@ namespace ViedoStore_TESTS
         [TestCase("123")]
         [TestCase("123 ")]
         [TestCase("1-'¨2<23")]
-        public void GetRentalsFor(string socialSecurityNumber)
+        public void GetRentalsFor([Values("976")]string socialSecurityNumber)
         {
             Assert.IsNotNull(sut.GetRentalsFor(socialSecurityNumber));
             sut.GetRentalsFor(socialSecurityNumber);
@@ -63,7 +63,7 @@ namespace ViedoStore_TESTS
         [TestCase("Peter", "456")]
         [TestCase("1", "456")]
         [TestCase("¤!()/=", "123")]
-        public void RegisterCustomer(string name, string socialSecurityNumber)
+        public void RegisterCustomer([Values("peter")]string name, [Values("4236")] string socialSecurityNumber)
         {
             sut.RegisterCustomer(name, socialSecurityNumber);
             Assert.IsNotEmpty(name);

@@ -9,13 +9,11 @@ using TravelAgency;
 namespace TravelAgencyTests
 {
     [TestFixture]
-    public class TourScheduleTests
+    public class TourScheduleTests:ITourSchedule
     {
         TourSchedule tour = new TourSchedule();
         private List<TourSchedule> tours = new List<TourSchedule>();
-        //public List<int?> NumberOfTours { get; set; }
         TravelAgency.Program prog = new Program();
-        //[TestCase("GrandTour","2017/05/24", "Ford1", "Seat1")]
         [Test,TestCaseSource(typeof(TourSchedule))]
         public void CanCreateNewTour(string Name, DateTime Date, CheckVehicle Vehicle, CheckAvalibleSeats Seats)
         {
@@ -25,6 +23,7 @@ namespace TravelAgencyTests
             tour.Date = Date;
             tours.Add(tour);
             Assert.IsTrue(tour.CanCreateTour);
+            Assert.IsNotNull(tour.NumberOfToursAdded);
         }
         [Test]
         public void CheckIfPossibleToCanCreateNewTour()
@@ -42,11 +41,19 @@ namespace TravelAgencyTests
         [TestCase(4)]
         [TestCase(15)]
         [TestCase(0)]
+        [TestCase(-1)]
         public void CheckNumberOfToursAdded(int value)
         {
             tour.NumberOfToursAdded = value;
             prog.NumberOftoursAdded(value);
-            Assert.IsNotNull(tour.NumberOfToursAdded);
+            if (value <= 0)
+            {
+                Assert.IsNotNull(tour.NumberOfToursAdded);
+            }
+        }
+        public List<TourSchedule> GetTours()
+        {
+            return tours;
         }
     }
 }

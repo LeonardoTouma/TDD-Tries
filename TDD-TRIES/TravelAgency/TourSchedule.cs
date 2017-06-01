@@ -14,10 +14,13 @@ namespace TravelAgency
         public CheckVehicle Vehicle { get; set; }
         public bool CanCreateTour { get; set; }
         public int? NumberOfToursAdded { get; set; }
+        //public Booking booking { get; set; }
+        public List<CheckAvalibleSeats> check { get; set; }
         public TourSchedule()
         {
             Date = DateTime.Today.AddDays(+1);
             CanCreateTour = true;
+            NumberOfToursAdded++;
         }
     }
     public enum CheckVehicle

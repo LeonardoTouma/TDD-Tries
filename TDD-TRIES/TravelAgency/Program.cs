@@ -64,7 +64,7 @@ namespace TravelAgency
                 {
                     return tour;
                 }
-                return tour;
+                return nr;
             }
             return nr;
         }

@@ -18,11 +18,15 @@ namespace ViedoStore_TESTS
         {
             sut = new VideoStore();
         }
-
+        public VideoStore SetupMethod_For_VideoStore()
+        {
+            sut = new VideoStore();
+            return sut;
+        }
         [TestCaseSource(typeof(Movie))]
         public void AddMovie(Movie movie)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.AddMovie(movie);
 
             Assert.IsNotNull(movie);
@@ -31,7 +35,7 @@ namespace ViedoStore_TESTS
         [TestCase("Titanic", "123")]
         public void AddRental(string movieTitle, string socialSecurityNumber)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.AddRental(movieTitle, socialSecurityNumber);
             Assert.IsNotNull(movieTitle);
             Assert.IsNotEmpty(movieTitle);
@@ -41,7 +45,7 @@ namespace ViedoStore_TESTS
         [Test]
         public void GetCustomers_Thrue_List()
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.GetCustomers_Thrue_List();
             Assert.IsNotNull(sut.GetCustomers_Thrue_List());
         }
@@ -51,7 +55,7 @@ namespace ViedoStore_TESTS
         [TestCase("1-'¨2<23")]
         public void GetRentalsFor(string socialSecurityNumber)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             Assert.IsNotNull(sut.GetRentalsFor(socialSecurityNumber));
             sut.GetRentalsFor(socialSecurityNumber);
 
@@ -62,7 +66,7 @@ namespace ViedoStore_TESTS
 
         public void RegisterCustomer(string name, string socialSecurityNumber)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.RegisterCustomer(name, socialSecurityNumber);
             Assert.IsNotEmpty(name);
             Assert.IsNotEmpty(socialSecurityNumber);
@@ -72,7 +76,7 @@ namespace ViedoStore_TESTS
         [TestCaseSource(typeof(Rental))]
         public void RemoveRental(string movieTitle, string socialSecurityNumber)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.RemoveRental(movieTitle, socialSecurityNumber);
             Assert.IsNotNull(movieTitle);
             Assert.IsNotNull(socialSecurityNumber);
@@ -83,7 +87,7 @@ namespace ViedoStore_TESTS
         [TestCase("5443", "Peter pan")]
         public void RentMovie(string movieTitle, string socialSecurityNumber)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.RentMovie(movieTitle, socialSecurityNumber);
             //------------------TEST-----------------
             Assert.IsNotNull(movieTitle);
@@ -94,7 +98,7 @@ namespace ViedoStore_TESTS
         [TestCase("9887", "asdax ")]
         public void ReturnMovie(string movieTitle, string socialSecurityNumber)
         {
-            sut = new VideoStore();
+            var sut = SetupMethod_For_VideoStore();
             sut.ReturnMovie(movieTitle,socialSecurityNumber);
             Assert.IsNotNull(movieTitle);
             Assert.IsNotNull(socialSecurityNumber);

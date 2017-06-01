@@ -69,7 +69,7 @@ namespace ViedoStore_BI.Logic
 
         public List<Customer> GetCustomers_Thrue_List()
         {
-            return Customers;
+            return Customers.ToList();
         }
 
         public List<Rental> GetRentalsFor(string socialSecurityNumber)

@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDataSource\DataSourceTest_Giver_Customer.cs" />
+    <Compile Include="TestDataSource\DataSourceTest_Giver_Movie.cs" />
+    <Compile Include="TestDataSource\DataSourceTest_Giver_Rental.cs" />
     <Compile Include="VideoStoreTests.cs" />
     <Compile Include="WhatKindOfTestsWeNeed\KindOfTests.cs" />
   </ItemGroup>

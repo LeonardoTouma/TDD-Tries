@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,21 @@ namespace TravelAgency
         //private TourSchedule ItourSchedule;
         private List<TourSchedule> tours;
         private List<Booking> bookings;
+        private ITourSchedule itour;
         [SetUp]
         public void SetUpMethod()
         {
             var sut = ReturnTourInstance();
+            itour = Substitute.For<ITourSchedule>();
             //CanCreateBooking();
+            //smsStub = Substitute.For<ISMSSender>();
+            //passStub = Substitute.For<IPassengerInfoDAL>();
+            //sut = new Notifier(smsStub, passStub);
 
         }
         public TourSchedule ReturnTourInstance()
         {
-            var sut = new TourSchedule();
+            var sut = new TourSchedule(itour);
             return sut;
         }
 
@@ -39,7 +45,7 @@ namespace TravelAgency
         {
             tours = new List<TourSchedule>()
             {
-                new TourSchedule
+                new TourSchedule(itour)
             {
                 Date = DateTime.Now, Name = "Tour1",
                 Seats = CheckAvalibleSeats.Seat1,
@@ -66,7 +72,7 @@ namespace TravelAgency
                 {
                      ID = passanger.ID, Tours = new List<TourSchedule>()
                     {
-                    new TourSchedule()
+                    new TourSchedule(itour)
                     {
                      Vehicle = CheckVehicle.Ford2, Name = "tour1", Seats = CheckAvalibleSeats.Seat2,
                         CanCreateTour = true, Date = DateTime.Now, }}}
@@ -91,8 +97,8 @@ namespace TravelAgency
         public void Check_If_Able_To_Book_On_Non_Existing_Tour(Booking booking, TourSchedule tour)
         {
             //var tour = new List<TourSchedule>() { new TourSchedule { CanCreateTour = true, Date = DateTime.Now, Name = "tour3", Seats = CheckAvalibleSeats.Seat1, Vehicle = CheckVehicle.Ford2 } };
-            var book = new Booking() { Tours = new List<TourSchedule>() { new TourSchedule() { CanCreateTour = true, Date = DateTime.Now, Name = "tour3", Seats = CheckAvalibleSeats.Seat4, Vehicle = CheckVehicle.Ford3 } } };
-            var tour1 = new TourSchedule()
+            var book = new Booking() { Tours = new List<TourSchedule>() { new TourSchedule(itour) { CanCreateTour = true, Date = DateTime.Now, Name = "tour3", Seats = CheckAvalibleSeats.Seat4, Vehicle = CheckVehicle.Ford3 } } };
+            var tour1 = new TourSchedule(itour)
             {
                 CanCreateTour = tour.CanCreateTour,
                 Date = tour.Date,

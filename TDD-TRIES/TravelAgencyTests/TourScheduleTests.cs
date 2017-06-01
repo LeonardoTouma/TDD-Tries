@@ -11,9 +11,16 @@ namespace TravelAgencyTests
     [TestFixture]
     public class TourScheduleTests:ITourSchedule
     {
-        TourSchedule tour = new TourSchedule();
+        private TourSchedule tour;
+        private ITourSchedule itour;
         private List<TourSchedule> tours = new List<TourSchedule>();
         TravelAgency.Program prog = new Program();
+        [SetUp]
+        public void SetupMethod()
+        {
+            itour = NSubstitute.Substitute.For<ITourSchedule>();
+            tour = new TourSchedule(itour);
+        }
         [Test,TestCaseSource(typeof(TourSchedule))]
         public void CanCreateNewTour(string Name, DateTime Date, CheckVehicle Vehicle, CheckAvalibleSeats Seats)
         {
@@ -33,7 +40,7 @@ namespace TravelAgencyTests
         }
         public TourSchedule ReturnTourInstance()
         {
-            var sut = new TourSchedule();
+            var sut = new TourSchedule(itour);
             return sut;
         }
         [TestCase(1)]

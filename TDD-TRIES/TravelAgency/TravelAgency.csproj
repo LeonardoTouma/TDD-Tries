@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\CheckAvalibleSeats.cs" />
+    <Compile Include="Enums\CheckVehicle.cs" />
     <Compile Include="ITourSchedule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

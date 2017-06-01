@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelAgency
 {
-   public class TourSchedule
+    public class TourSchedule
     {
         public string Name { get; set; }
         public DateTime Date { get; set; }
@@ -16,25 +16,16 @@ namespace TravelAgency
         public int? NumberOfToursAdded { get; set; }
         //public Booking booking { get; set; }
         public List<CheckAvalibleSeats> check { get; set; }
+        private ITourSchedule itour;
         public TourSchedule()
         {
+        }
+        public TourSchedule(ITourSchedule itour)
+        {
+            this.itour = itour;
             Date = DateTime.Today.AddDays(+1);
             CanCreateTour = true;
             NumberOfToursAdded++;
         }
-    }
-    public enum CheckVehicle
-        {
-        Ford1,
-        Ford2,
-        Ford3,
-        Ford4
-    }
-    public enum CheckAvalibleSeats
-    {
-        Seat1,
-        Seat2,
-        Seat3,
-        Seat4,
     }
 }

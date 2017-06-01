@@ -24,8 +24,7 @@ namespace ViedoStore_TESTS
         //    sut = new VideoStore();
         //    return sut;
         //}
-        [TestCaseSource(typeof(DataSourceTest_Giver_Movie))]
-        [TestCaseSource(typeof(DataSourceTest_Giver_Customer))]
+        //[TestCaseSource(typeof(DataSourceTest_Giver_Movie))]
         public void AddMovie(Movie movie)
         {
             sut.AddMovie(movie);
@@ -71,8 +70,8 @@ namespace ViedoStore_TESTS
             Assert.IsNotNull(name);
             Assert.IsNotNull(socialSecurityNumber);
         }
-        [TestCaseSource(typeof(DataSourceTest_Giver_Rental))]
-        public void RemoveRental(string movieTitle, string socialSecurityNumber)
+        //[TestCaseSource(typeof(DataSourceTest_Giver_Rental))]
+        public void RemoveRental([Values("sad")]string movieTitle, [Values("123")] string socialSecurityNumber)
         {
             sut.RemoveRental(movieTitle, socialSecurityNumber);
             Assert.IsNotNull(movieTitle);
@@ -82,7 +81,7 @@ namespace ViedoStore_TESTS
         }
         [TestCase("Peterpan", "5443")]
         [TestCase("5443", "Peter pan")]
-        public void RentMovie(string movieTitle, string socialSecurityNumber)
+        public void RentMovie([Values("lksad")]string movieTitle, [Values("3241")] string socialSecurityNumber)
         {
             sut.RentMovie(movieTitle, socialSecurityNumber);
             //------------------TEST-----------------
@@ -92,7 +91,7 @@ namespace ViedoStore_TESTS
         [TestCase("Tilasa", "9887")]
         [TestCase("Tilasa ", "9887")]
         [TestCase("9887", "asdax ")]
-        public void ReturnMovie(string movieTitle, string socialSecurityNumber)
+        public void ReturnMovie([Values("bnvcvas")]string movieTitle, [Values("66453")]string socialSecurityNumber)
         {
             sut.ReturnMovie(movieTitle,socialSecurityNumber);
             Assert.IsNotNull(movieTitle);
